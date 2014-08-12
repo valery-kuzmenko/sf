@@ -1,4 +1,5 @@
-acme_store:
-    resource: "@AcmeStoreBundle/Resources/config/routing.yml"
+_user_bundle:
+    resource: "@ChampUserBundle/Resources/config/routing.yml"
     prefix:   /
+
 
