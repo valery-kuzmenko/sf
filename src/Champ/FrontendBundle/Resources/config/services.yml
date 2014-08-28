@@ -1,0 +1,7 @@
+parameters:
+#    champ_frontend.example.class: Champ\FrontendBundle\Example
+
+services:
+#    champ_frontend.example:
+#        class: %champ_frontend.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,3 +1,7 @@
+champ_frontend:
+    resource: "@ChampFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
 _user_bundle:
     resource: "@ChampUserBundle/Resources/config/routing.yml"
     prefix:   /

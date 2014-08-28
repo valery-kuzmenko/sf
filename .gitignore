@@ -10,3 +10,5 @@
 /bin/
 /composer.phar
 /nbproject/private/
+/node_modules
+/bower_components
