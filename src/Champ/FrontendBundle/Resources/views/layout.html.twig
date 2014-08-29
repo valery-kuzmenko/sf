@@ -1,4 +1,8 @@
-frontend layout <br>
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+   {{ parent() }};
+{% endblock %}
+{% block requirejs %}{% endblock %}
 {% block  body %}
-    
+    frontend layout <br>
 {% endblock %}

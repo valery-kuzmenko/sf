@@ -1,4 +1,10 @@
 {% extends "ChampFrontendBundle::layout.html.twig" %}
+{% block requirejs %}
+    {{ include('::requirejs.html.twig', {
+            'module' : 'app/index'
+       }) 
+    }}
+{% endblock %}
 {% block  body %}
 index.php
 {% endblock %}
