@@ -1,0 +1,10 @@
+{% extends "ChampFrontendBundle::layout.html.twig" %}
+{% block requirejs %}
+    {{ include('::requirejs.html.twig', {
+            'module' : 'app/profile'
+       }) 
+    }}
+{% endblock %}
+{% block  body %}
+profile
+{% endblock %}

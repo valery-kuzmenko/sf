@@ -1,3 +1,6 @@
 champ_frontend_homepage:
     path:     /
     defaults: { _controller: ChampFrontendBundle:Default:index }
+champ_profile_index:
+    path:     /profile
+    defaults: { _controller: ChampFrontendBundle:UserProfile:index }
