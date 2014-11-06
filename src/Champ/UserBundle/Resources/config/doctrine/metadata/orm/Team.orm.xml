@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Team" table="team">
+    <indexes>
+      <index name="fk_team_sport1_idx" columns="sport_id"/>
+      <index name="fk_team_city1_idx" columns="city_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="45" nullable="true"/>
+    <field name="description" type="text" column="description" nullable="true"/>
+    <field name="photo" type="string" column="photo" length="255" nullable="true"/>
+    <many-to-one field="city" target-entity="City">
+      <join-columns>
+        <join-column name="city_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="sport" target-entity="Sport">
+      <join-columns>
+        <join-column name="sport_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="tournament" target-entity="Tournament" inversed-by="team">
+      <join-table name="team_tournament">
+        <join-columns>
+          <join-column name="team_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="tournament_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="champUser" target-entity="ChampUser" mapped-by="team"/>
+  </entity>
+</doctrine-mapping>
