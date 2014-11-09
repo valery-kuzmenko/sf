@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="champ_user")
  */
 class User extends BaseUser
 {
@@ -17,7 +17,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+	
     /**
      * @ORM\ManyToMany(targetEntity="Champ\UserBundle\Entity\Group")
      * @ORM\JoinTable(name="user_group",
@@ -25,7 +25,7 @@ class User extends BaseUser
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
      */
-    protected $group;
+    protected $groups;
 	
     /**
      * @var string
@@ -69,7 +69,7 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Team", inversedBy="User")
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="user")
      * @ORM\JoinTable(name="user_team",
      *   joinColumns={
      *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -155,39 +155,6 @@ class User extends BaseUser
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * Add group
-     *
-     * @param \Champ\UserBundle\Entity\Group $group
-     * @return User
-     */
-    public function addGroup(\Champ\UserBundle\Entity\Group $group)
-    {
-        $this->group[] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Remove group
-     *
-     * @param \Champ\UserBundle\Entity\Group $group
-     */
-    public function removeGroup(\Champ\UserBundle\Entity\Group $group)
-    {
-        $this->group->removeElement($group);
-    }
-
-    /**
-     * Get group
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGroup()
-    {
-        return $this->group;
     }
 
     /**

@@ -20,7 +20,7 @@ class Group extends BaseGroup {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \Team

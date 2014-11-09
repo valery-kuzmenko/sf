@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Requests
- *
- * @ORM\Table(name="requests")
+ * 
  * @ORM\Entity
- * @InheritanceType("SINGLE_TABLE")
- * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"joinrequest" = "JoinTeam", "jointournament" = "JoinTournament", "inviteuser" = "InviteUser",
- *  "invitetournament" = "InviteTournament", "refusetournament" = "RefuseTournament", "refusetraining" = "RefuseTraining"
+ * @ORM\Table(name="requests")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"joinrequest" = "JoinTeam", "jointournament" = "JoinTournament", "inviteuser" = "InviteUser",
+ *  "invitetournament" = "InviteTournament", "refusetournament" = "RefuseTournament", "refusetraining" = "RefuseTraining",
  *	"finduser" = "FindUser", "findteam" = "FindTeam"})
  */
 class Requests
@@ -24,93 +24,73 @@ class Requests
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected  $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="discr", type="string", length=45, nullable=false)
-     */
-    private $discr;
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="message", type="text", nullable=true)
      */
-    private $message;
+    protected  $message;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="approved", type="boolean", nullable=true)
      */
-    private $approved;
+    protected  $approved;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     * @var \User
+     * 
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
-    private $UserId;
+    protected  $user;
 
     /**
-     * @var integer
+     * @var \Team
      *
-     * @ORM\Column(name="team_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     * })
      */
-    private $teamId;
+    protected  $team;
 
     /**
-     * @var integer
+     * @var \Tournament
      *
-     * @ORM\Column(name="tournament_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tournament_id", referencedColumnName="id")
+     * })
      */
-    private $tournamentId;
+    protected  $tournament;
 
     /**
-     * @var integer
+     * @var \User
      *
-     * @ORM\Column(name="tournament_owner_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *    @ORM\JoinColumn(name="tournament_owner_id", referencedColumnName="id")  
+     * })
      */
-    private $tournamentOwnerId;
+    protected  $tournamentOwner;
 
     /**
-     * @var integer
+     * @var \Sport
      *
-     * @ORM\Column(name="training_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Sport")
+     * @ORM\JoinColumns({
+     *    @ORM\JoinColumn(name="sport_id", referencedColumnName="id")  
+     * })
      */
-    private $trainingId;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="day", type="string", length=10, nullable=true)
-     */
-    private $day;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="sport_id", type="integer", nullable=true)
-     */
-    private $sportId;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_from", type="datetime", nullable=true)
-     */
-    private $dateFrom;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_to", type="datetime", nullable=true)
-     */
-    private $dateTo;
-
-
+    protected  $sport;
 
     /**
      * Get id
@@ -192,152 +172,106 @@ class Requests
     }
 
     /**
-     * Set UserId
+     * Set User
      *
-     * @param integer $UserId
+     * @param c $user
      * @return Requests
      */
-    public function setUserId($UserId)
+    public function setUser(\Champ\UserBundle\Entity\User $user = null)
     {
-        $this->UserId = $UserId;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get UserId
+     * Get User
      *
-     * @return integer 
+     * @return \Champ\UserBundle\Entity\User 
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->UserId;
+        return $this->user;
     }
 
     /**
-     * Set teamId
+     * Set team
      *
-     * @param integer $teamId
+     * @param \Champ\UserBundle\Entity\Team $team
      * @return Requests
      */
-    public function setTeamId($teamId)
+    public function setTeam(\Champ\UserBundle\Entity\Team $team = null)
     {
-        $this->teamId = $teamId;
+        $this->team = $team;
 
         return $this;
     }
 
     /**
-     * Get teamId
+     * Get team
      *
-     * @return integer 
+     * @return \Champ\UserBundle\Entity\Team
      */
-    public function getTeamId()
+    public function getTeam()
     {
-        return $this->teamId;
+        return $this->team;
     }
 
     /**
-     * Set tournamentId
+     * Set tournament
      *
-     * @param integer $tournamentId
+     * @param \Champ\UserBundle\Entity\Tournament $tournament
      * @return Requests
      */
-    public function setTournamentId($tournamentId)
+    public function setTournament(\Champ\UserBundle\Entity\Tournament $tournament = null)
     {
-        $this->tournamentId = $tournamentId;
+        $this->tournament = $tournament;
 
         return $this;
     }
 
     /**
-     * Get tournamentId
+     * Get tournament
      *
-     * @return integer 
+     * @return \Champ\UserBundle\Entity\Tournament 
      */
-    public function getTournamentId()
+    public function getTournament()
     {
-        return $this->tournamentId;
+        return $this->tournament;
     }
 
     /**
-     * Set tournamentOwnerId
+     * Set tournamentOwner
      *
-     * @param integer $tournamentOwnerId
+     * @param \Champ\UserBundle\Entity\User $tournamentOwner
      * @return Requests
      */
-    public function setTournamentOwnerId($tournamentOwnerId)
+    public function setTournamentOwner(\Champ\UserBundle\Entity\User $tournamentOwner = null)
     {
-        $this->tournamentOwnerId = $tournamentOwnerId;
+        $this->tournamentOwner = $tournamentOwner;
 
         return $this;
     }
 
     /**
-     * Get tournamentOwnerId
+     * Get tournamentOwner
      *
-     * @return integer 
+     * @return \Champ\UserBundle\Entity\User 
      */
-    public function getTournamentOwnerId()
+    public function getTournamentOwner()
     {
-        return $this->tournamentOwnerId;
+        return $this->tournamentOwner;
     }
 
     /**
-     * Set trainingId
+     * Set sport
      *
-     * @param integer $trainingId
+     * @param \Champ\UserBundle\Entity\Sport $sport
      * @return Requests
      */
-    public function setTrainingId($trainingId)
+    public function setSport(\Champ\UserBundle\Entity\Sport $sport = null)
     {
-        $this->trainingId = $trainingId;
-
-        return $this;
-    }
-
-    /**
-     * Get trainingId
-     *
-     * @return integer 
-     */
-    public function getTrainingId()
-    {
-        return $this->trainingId;
-    }
-
-    /**
-     * Set day
-     *
-     * @param string $day
-     * @return Requests
-     */
-    public function setDay($day)
-    {
-        $this->day = $day;
-
-        return $this;
-    }
-
-    /**
-     * Get day
-     *
-     * @return string 
-     */
-    public function getDay()
-    {
-        return $this->day;
-    }
-
-    /**
-     * Set sportId
-     *
-     * @param integer $sportId
-     * @return Requests
-     */
-    public function setSportId($sportId)
-    {
-        $this->sportId = $sportId;
+        $this->sport = $sport;
 
         return $this;
     }
@@ -345,56 +279,10 @@ class Requests
     /**
      * Get sportId
      *
-     * @return integer 
+     * @return \Champ\UserBundle\Entity\Sport 
      */
-    public function getSportId()
+    public function getSport()
     {
-        return $this->sportId;
-    }
-
-    /**
-     * Set dateFrom
-     *
-     * @param \DateTime $dateFrom
-     * @return Requests
-     */
-    public function setDateFrom($dateFrom)
-    {
-        $this->dateFrom = $dateFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get dateFrom
-     *
-     * @return \DateTime 
-     */
-    public function getDateFrom()
-    {
-        return $this->dateFrom;
-    }
-
-    /**
-     * Set dateTo
-     *
-     * @param \DateTime $dateTo
-     * @return Requests
-     */
-    public function setDateTo($dateTo)
-    {
-        $this->dateTo = $dateTo;
-
-        return $this;
-    }
-
-    /**
-     * Get dateTo
-     *
-     * @return \DateTime 
-     */
-    public function getDateTo()
-    {
-        return $this->dateTo;
+        return $this->sport;
     }
 }

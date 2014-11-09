@@ -87,7 +87,7 @@ class Team
 	/**
 	 * @var \Group
 	 * 
-	 * @ORM\OneToMany(targetEntity="Group", inversedBy="team")
+	 * @ORM\OneToMany(targetEntity="Group", mappedBy="team")
 	 */
 	private $group;
 
