@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class FindTeam extends Requests {
+class FindTeam extends Notifications {
     /**
      * @var \DateTime
      *
@@ -30,6 +30,18 @@ class FindTeam extends Requests {
      * @param \DateTime $dateFrom
      * @return Requests
      */
+    
+    /**
+     * @var \Sport
+     *
+     * @ORM\ManyToOne(targetEntity="Sport")
+     * @ORM\JoinColumns({
+     *    @ORM\JoinColumn(name="sport_id", referencedColumnName="id")  
+     * })
+     */
+    protected  $sport;
+    
+    
     public function setDateFrom($dateFrom)
     {
         $this->dateFrom = $dateFrom;
@@ -68,6 +80,29 @@ class FindTeam extends Requests {
     public function getDateTo()
     {
         return $this->dateTo;
+    }
+    
+    /**
+     * Set sport
+     *
+     * @param \Champ\UserBundle\Entity\Sport $sport
+     * @return Requests
+     */
+    public function setSport(\Champ\UserBundle\Entity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \Champ\UserBundle\Entity\Sport 
+     */
+    public function getSport()
+    {
+        return $this->sport;
     }    
 }
 

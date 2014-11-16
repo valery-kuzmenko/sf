@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class RefuseTraining extends Requests {
+class RefuseTraining extends Notifications {
     /**
      * @var \Training
      *

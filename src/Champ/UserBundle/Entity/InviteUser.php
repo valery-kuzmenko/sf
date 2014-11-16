@@ -9,6 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class InviteUser extends Requests {
+class InviteUser  extends MyRequests {
     
 }

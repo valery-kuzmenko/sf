@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class InviteTournament extends Requests {
+class InviteTournament extends JoinTournament {
+
     
 }
-

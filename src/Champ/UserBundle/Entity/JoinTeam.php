@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class JoinTeam extends Requests {
+class JoinTeam  extends MyRequests {
     
 }
 

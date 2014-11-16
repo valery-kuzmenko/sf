@@ -60,6 +60,14 @@ class Training
     private $team;
 
     /**
+     * @var string<br>
+     * serialized array of values
+     * 
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     */
+    private $address;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -182,5 +190,28 @@ class Training
     public function getTeam()
     {
         return $this->team;
+    }
+    
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return Training
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

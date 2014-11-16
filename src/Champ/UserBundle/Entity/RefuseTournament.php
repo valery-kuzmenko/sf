@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  */
-class RefuseTournament extends Requests {
+class RefuseTournament extends Notifications {
     
 }
 
