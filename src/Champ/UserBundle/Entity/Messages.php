@@ -39,6 +39,16 @@ class Messages
     private $User;
 
     /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="target_user_id", referencedColumnName="id")
+     * })
+     */
+    private $targetUser;
+
+    /**
      * @var \Team
      *
      * @ORM\ManyToOne(targetEntity="Team")
@@ -48,8 +58,13 @@ class Messages
      */
     private $team;
 
-
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=45, nullable=true)
+     */
+    private $status;   
+    
     /**
      * Get id
      *
@@ -107,6 +122,29 @@ class Messages
     }
 
     /**
+     * Set TargetUser
+     *
+     * @param \Champ\UserBundle\Entity\User $User
+     * @return Messages
+     */
+    public function setTargetUser(\Champ\UserBundle\Entity\User $User = null)
+    {
+        $this->targetUser = $User;
+
+        return $this;
+    }
+
+    /**
+     * Get TargetUser
+     *
+     * @return \Champ\UserBundle\Entity\User 
+     */
+    public function getTargetUser()
+    {
+        return $this->targetUser;
+    }
+
+    /**
      * Set team
      *
      * @param \Champ\UserBundle\Entity\Team $team
@@ -128,4 +166,27 @@ class Messages
     {
         return $this->team;
     }
+    
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return SingleTrainings
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }               
 }

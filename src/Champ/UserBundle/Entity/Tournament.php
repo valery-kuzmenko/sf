@@ -44,13 +44,25 @@ class Tournament
      * @ORM\ManyToMany(targetEntity="Team", mappedBy="tournament")
      */
     private $team;
-
+    
+    
+    /**
+     * @var \TournamentPeriod
+     * 
+     * @ORM\OneToMany(targetEntity="TournamentPeriod", mappedBy="tournament")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="tournament_id", referencedColumnName="id")
+     * })
+     */
+    private $period;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->team = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->period = new \Doctrine\Comon\Collections\ArrayCollection();
     }
 
 
@@ -141,5 +153,38 @@ class Tournament
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Add Tournament Period
+     *
+     * @param \Champ\UserBundle\Entity\TournamentPeriod $period
+     * @return Tournament
+     */
+    public function addPeriod(\Champ\UserBundle\Entity\TournamentPeriod $period)
+    {
+        $this->period[] = $period;
+
+        return $this;
+    }
+
+    /**
+     * Remove Tournament Period
+     *
+     * @param \Champ\UserBundle\Entity\TournamentPeriod $period
+     */
+    public function removePeriod(\Champ\UserBundle\Entity\TournamentPeriod $period)
+    {
+        $this->period->removeElement($period);
+    }
+
+    /**
+     * Get Tournament Periods
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPeriod()
+    {
+        return $this->period;
     }
 }

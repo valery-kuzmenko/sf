@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"refusetournament" = "RefuseTournament", "refusetraining" = "RefuseTraining",
- * "finduser" = "FindUser", "findteam" = "FindTeam", "invitetraining" = "InviteTraining", "jointraining" = "JoinTraining"})
+ * "finduser" = "FindUser", "findteam" = "FindTeam"})
  */
 class Notifications extends Requests
 {

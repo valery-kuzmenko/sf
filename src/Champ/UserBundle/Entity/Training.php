@@ -67,6 +67,13 @@ class Training
      */
     private $address;
     
+     /**
+     * @var string<br>
+     * 
+     * @ORM\Column(name="point", type="string", length=255, nullable=true)
+     */
+    private $point;
+    
     /**
      * Get id
      *
@@ -214,4 +221,25 @@ class Training
     {
         return $this->address;
     }
+    
+    /**
+     * Set point
+     * 
+     * @param string $point
+     * @return Addresses
+     */
+    public function setPoint($point) {
+        $this->point = $point;
+        
+        return $this;
+    }
+    
+    /**
+     * Get point
+     * 
+     * @return string
+     */
+    public function getPoint() {
+        return $this->point;
+    }    
 }
