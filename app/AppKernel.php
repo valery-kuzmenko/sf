@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Champ\UserBundle\ChampUserBundle(),
             new Champ\FrontendBundle\ChampFrontendBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

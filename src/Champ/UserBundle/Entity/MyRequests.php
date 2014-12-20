@@ -31,6 +31,16 @@ class MyRequests extends Requests
     private $createdDate;
     
     /**
+     * @var \Messages
+     * 
+     * @ORM\OneToOne(targetEntity="Messages")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="confirm_message_id", referencedColumnName="id")
+     * })
+     */
+    private $confirmMessage;
+    
+    /**
      * Set status
      *
      * @param string $status
@@ -74,5 +84,28 @@ class MyRequests extends Requests
     public function getCreatedDate()
     {
         return $this->createdDate;
+    }
+    
+    /**
+     * Set Confirm Message
+     *
+     * @param \Champ\UserBundle\Entity\Messages $Message
+     * @return \Messages
+     */
+    public function setConfirmMessage(\Champ\UserBundle\Entity\Messages $Message = null)
+    {
+        $this->confirmMessage = $Message;
+
+        return $this;
+    }
+
+    /**
+     * Get Confirm Message
+     *
+     * @return \Champ\UserBundle\Entity\Messages 
+     */
+    public function getConfirmMessage()
+    {
+        return $this->confirmMessage;
     }    
 }
