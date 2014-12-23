@@ -83,6 +83,7 @@ class User extends BaseUser
 
     public function __construct()
     {
+		parent::__construct();
         $this->group = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sport = new \Doctrine\Common\Collections\ArrayCollection();
         $this->team = new \Doctrine\Common\Collections\ArrayCollection();
